@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "list.h"
 
@@ -22,7 +23,7 @@ void* get(List* list, int position) {
         pos++;
     }
 
-    return node;
+    return node->value;
 }
 
 void add(List* list, void* object) {
@@ -49,23 +50,6 @@ void remove_at(List* list, int position) {
         node = node->next;
         pos++;
     }
-
-    prev->next = node->next;
-    list->size--;
-
-    free(node);
-}
-
-void remove_first(List* list, void* value) {
-    list_node* prev;
-    list_node* node = list->first;
-
-    while (node != NULL && node->value != value) {
-        prev = node;
-        node = node->next;
-    }
-
-    if (node->value != value) return;
 
     prev->next = node->next;
     list->size--;

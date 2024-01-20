@@ -9,6 +9,7 @@ Queue* new_queue() {
 
     queue->head = NULL;
     queue->tail = NULL;
+    queue->size = 0;
 
     return queue;
 }

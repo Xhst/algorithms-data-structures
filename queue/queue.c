@@ -33,7 +33,7 @@ void enqueue(Queue* queue, void* object) {
 }
 
 void* dequeue(Queue* queue) {
-    if (queue == NULL || queue->head) return NULL;
+    if (queue == NULL || queue->head == NULL) return NULL;
 
     void* value = peek(queue);
 
@@ -48,7 +48,7 @@ void* dequeue(Queue* queue) {
 }
 
 void* peek(Queue* queue) {
-    if (queue == NULL || queue->head) return NULL;
+    if (queue == NULL || queue->head == NULL) return NULL;
 
     return queue->head->value;
 }

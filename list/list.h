@@ -32,11 +32,6 @@ void add(struct list* list, void* object);
 void remove_at(struct list* list, int position);
 
 /**
- * Remove first element with the given value.
- */
-void remove_first(struct list* list, void* value);
-
-/**
  * Returns the size of the list.
  */
 int size(struct list* list);

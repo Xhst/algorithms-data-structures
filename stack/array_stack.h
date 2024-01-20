@@ -1,5 +1,5 @@
-#ifndef __STACK_H__
-#define __STACK_H__
+#ifndef __ARR_STACK_H__
+#define __ARR_STACK_H__
 
 #define INITIAL_STACK_SIZE 15
 

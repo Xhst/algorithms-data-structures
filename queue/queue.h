@@ -10,6 +10,7 @@ struct queue_node {
 typedef struct queue {
     struct queue_node* head;
     struct queue_node* tail;
+    int size;
 } Queue;
 
 /**

@@ -76,9 +76,7 @@ int size(Stack* stack) {
 }
 
 int is_empty(Stack* stack) {
-    if (stack == NULL) return 1;
-
-    return stack->size == 0;
+    return stack == NULL || stack->size == 0;
 }
 
 void empty(Stack* stack) {

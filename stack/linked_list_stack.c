@@ -50,9 +50,7 @@ int size(ListStack* stack) {
 }
 
 int is_empty(ListStack* stack) {
-    if (stack == NULL) return 1;
-
-    return stack->size == 0;
+    return stack == NULL || stack->size == 0;
 }
 
 void empty(ListStack* stack) {

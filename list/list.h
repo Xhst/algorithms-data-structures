@@ -37,11 +37,6 @@ void remove_at(struct list* list, int position);
 void remove_first(struct list* list, void* value);
 
 /**
- * Remove all elements with the given value.
- */
-void remove_all(struct list* list, void* value);
-
-/**
  * Returns the size of the list.
  */
 int size(struct list* list);

@@ -1,10 +1,12 @@
 #include <stdio.h>
 
-#include "stack.c"
+#include "array_stack.c"
 
 void print_int_stack(Stack* stack) {
+    void* p;
     for (int i = 0; i < stack->size; i++) {
-        printf("%d ", stack->array[i]);
+        p = stack->array[i];
+        printf("%d ", *((int *)(&p)));
     }
     printf("\n");
 }
@@ -12,14 +14,15 @@ void print_int_stack(Stack* stack) {
 int main() {
     Stack* stack = new_stack();
 
-    push(stack, 3);
-    push(stack, 5);
-    push(stack, 7);
+    push(stack, (int *)3);
+    push(stack, (int *)5);
+    push(stack, (int *)7);
 
     print_int_stack(stack);
     printf("Stack size: %d\n", size(stack));
 
-    int v = pop(stack);
+    void* p = pop(stack);
+    int v = *(int *)(&p);
 
     printf("Removed element %d, stack size after pop: %d\n", v, size(stack));
 

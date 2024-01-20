@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "stack.h"
+#include "array_stack.h"
 
 Stack* new_stack() {
     Stack* stack = malloc(sizeof(Stack));
 
-    stack->array = malloc(sizeof(int) * INITIAL_STACK_SIZE);
-    stack->current_max_size = 5;
+    stack->array = malloc(sizeof(void*) * INITIAL_STACK_SIZE);
+    stack->current_max_size = INITIAL_STACK_SIZE;
     stack->size = 0;
     stack->top_element_offset = -1;
 
@@ -26,7 +26,7 @@ void telescopic_grow(Stack* stack) {
 
     stack->current_max_size += INITIAL_STACK_SIZE;
 
-    int* temp = malloc(sizeof(int) * stack->current_max_size);
+    void** temp = malloc(sizeof(void*) * stack->current_max_size);
 
     for (int i = 0; i < stack->current_max_size - INITIAL_STACK_SIZE; i++) {
         *(temp + i) = *(stack->array + i);
@@ -37,23 +37,25 @@ void telescopic_grow(Stack* stack) {
     stack->array = temp;
 }
 
-void push(Stack* stack, int value) {
+void push(Stack* stack, void* object) {
     if (stack == NULL) return;
 
     if (stack->size == stack->current_max_size) {
         telescopic_grow(stack);
-        push(stack, value);
+        push(stack, object);
         return;
     }
 
     stack->top_element_offset++;
     stack->size++;
 
-    *(stack->array + stack->top_element_offset) = value;
+    *(stack->array + stack->top_element_offset) = object;
 }
 
-int pop(Stack* stack) {
-    int t = top(stack);
+void* pop(Stack* stack) {
+    if (stack == NULL || stack->size == 0) return NULL;
+
+    void* t = top(stack);
 
     stack->top_element_offset--;
     stack->size--;
@@ -61,7 +63,9 @@ int pop(Stack* stack) {
     return t;
 }
 
-int top(Stack* stack) {
+void* top(Stack* stack) {
+    if (stack == NULL) return NULL;
+
     return stack->array[stack->top_element_offset];
 }
 

@@ -4,7 +4,7 @@
 #define INITIAL_STACK_SIZE 15
 
 typedef struct stack {
-   int* array;
+   void** array;
    int current_max_size;
    int size;
    int top_element_offset;
@@ -18,17 +18,17 @@ struct stack* new_stack();
 /**
  * Inserts an element into the stack.
  */
-void push(struct stack* stack, int value);
+void push(struct stack* stack, void* object);
 
 /**
  * Removes and returns the outcropping element of the stack.
  */
-int pop(struct stack* stack);
+void* pop(struct stack* stack);
 
 /**
  * Returns the outcropping element of the stack.
  */
-int top(struct stack* stack);
+void* top(struct stack* stack);
 
 /**
  * Returns the number of elements in the stack.

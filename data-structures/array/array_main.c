@@ -5,6 +5,7 @@
 
 #include "array.c"
 #include "../../algorithms/sorting/insertion_sort.c"
+#include "../../algorithms/sorting/insertion_sort_recursive.c"
 
 static void test_insertion_sort() {
     const int size = rand() % 300;
@@ -25,8 +26,28 @@ static void test_insertion_sort() {
     free(array);
 }
 
+static void test_insertion_sort_recursive() {
+    const int size = rand() % 300;
+
+    int_array* array = new_int_array(size);
+
+    for (int i = 0; i < size; i++) {
+        set_value(array, i, (rand() % 1000) - 500);
+    }
+
+    insertion_sort_recursive(array->array, array->size);
+
+    for (int i = 0; i < size - 1; ++i) {
+        assert(array->array[i] <= array->array[i + 1]);
+    }
+
+    free(array->array);
+    free(array);
+}
+
 
 int main() {
     srand(time(NULL));
     test_insertion_sort();
+    test_insertion_sort_recursive();
 }

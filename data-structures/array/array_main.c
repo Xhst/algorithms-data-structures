@@ -6,6 +6,7 @@
 #include "array.c"
 #include "../../algorithms/sorting/insertion_sort.c"
 #include "../../algorithms/sorting/insertion_sort_recursive.c"
+#include "../../algorithms/sorting/selection_sort.c"
 
 static void test_insertion_sort() {
     const int size = rand() % 300;
@@ -66,7 +67,7 @@ static void test_selection_sort() {
 
 int main() {
     srand(time(NULL));
-    
+
     test_insertion_sort();
     test_insertion_sort_recursive();
     test_selection_sort();
